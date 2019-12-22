@@ -1,18 +1,42 @@
 package com.globomatics.bike.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
+@Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Bike {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+
 
     private String name;
     private String email;
     private String phone;
     private String model;
     private String serialNumber;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
     private BigDecimal purchasePrice;
     private Date purchaseDate;
     private boolean contact;
+
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
